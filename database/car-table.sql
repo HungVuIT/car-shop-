@@ -5,7 +5,7 @@ CREATE TABLE Car(
 	year INT(4) UNSIGNED, 
 	seats INT, 
 	color VARCHAR(30), 
-	tranmisstion VARCHAR(10), # manual, auto 
+	transmission VARCHAR(10), # manual, auto 
 	price DECIMAL(15,2), 
 	description TEXT 
 );
