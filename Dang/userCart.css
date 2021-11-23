@@ -25,16 +25,15 @@
 /* Main cart */
 
 #cartTitle {
-    background-color:rgba(176, 242, 245, 0.452);
+    background-color:rgb(194, 237, 240);
     padding: 2em;
 }
-
 
 #cart {
     width: 96%;
 }
 
-.table-responsive {
+#userCart {
     overflow-x: hidden;
 }
 

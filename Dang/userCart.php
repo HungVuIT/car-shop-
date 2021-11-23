@@ -1,7 +1,7 @@
 <?php
-    include "db_connect.php";
+    require "php/db_connect.php";
 
-    // TODO: get cart data from current session
+    // TODO: get cart data (from current user/session?)
     $rand_id = rand(1,12);
     $query = "SELECT * FROM Car WHERE (Id = $rand_id) or (Id = 13 - $rand_id)";
     $result = mysqli_query($conn, $query);
@@ -19,6 +19,12 @@
 <html lang="en">
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -107,13 +113,13 @@
             </h3>
 
             <h3 class="row justify-content-center">
-                Check out&nbsp;<a href="#">our selection</a>!
+                Check out&nbsp;<a href="<?php echo "#" /* TODO: link to products page */ ?>">our selection</a>!
             </h3>
         </div>
 
         <div class="row">
             <div class="col-12">
-                <table class="table table-responsive table-striped table-bordered">
+                <table id="userCart" class="table table-responsive table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col" class="col-sm-5 col-md-6">Car</th>
@@ -136,7 +142,7 @@
                         
                         <tr class="carItem">
                             <td>
-                                <img src="res/car<?php echo $id % 2 + 1 ?>.jpg" class="carImg col-sm-12 col-md-11 p-0" 
+                                <img src="res/car<?php echo $id % 2 + 1?>.jpg" class="carImg col-sm-12 col-md-11 p-0" 
                                     alt="<?php echo $name ?>">
                                 <br>
                             </td>
@@ -176,7 +182,8 @@
                                     </div>
                                     
                                     <div class="row justify-content-center pt-sm-3 pt-md-2">
-                                        <a class="carLink" href="#">See full details</a>
+                                        <a class="carLink" 
+                                          href="car.php?car_id=<?php echo $id ?>">See full details</a>
                                     </div>
                                 </div>
                             </td>
@@ -210,7 +217,6 @@
         </div>
     </div>
 
-    </div>
 
     <!-- end site -->
 
@@ -220,7 +226,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     

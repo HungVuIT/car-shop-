@@ -1,8 +1,8 @@
 <?php
-    include "db_connect.php";
+    require "php/db_connect.php";
 
 
-    $id = $_GET["id"];
+    $id = $_GET["car_id"];
     $query = "SELECT * FROM Car WHERE Id={$id}";
     $result = mysqli_query($conn, $query);
 
@@ -40,7 +40,7 @@
 
     <link href="car.css" rel="stylesheet">
     <link rel="icon" href="res/icon.png">
-    <title>Your Cart - Carworld</title>
+    <title><?php echo $name ?> - Carworld</title>
 </head>
 
 
@@ -120,6 +120,7 @@
 
     <!-- Car page -->
     <div class="container-fluid carPage">
+        <!-- Car photos -->
         <div class="row mb-4">
             <div id="carouselIndicators" class="col carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -154,7 +155,8 @@
 
         <!-- Main info -->
         <div class="row justify-content-between">
-            <div class="col-md-5">
+            <div class="col-4 pl-sm-5 pl-md-3">
+                <!-- Basic info + add to cart -->
                 <h2 id="carName">
                     <?php
                         echo $name;
@@ -167,6 +169,8 @@
                     ?>
                 </h3>
 
+                <button class="btn btn-primary my-4">Add to cart</button>
+
                 <p id="carDescription">
                     <?php
                         echo "Description: " . $description;
@@ -174,8 +178,9 @@
                 </p>
             </div>
 
+
             <!-- Detailed info table -->
-            <div class="col-md-5 table-responsive">
+            <div class="col-sm-5 col-lg-4 table-responsive">
                 <table class="table table-striped">
                     <tr>
                         <th>Brand</th>
@@ -236,6 +241,89 @@
                 </table>
             </div>
         </div>
+
+
+        <div id="reviewList" class="row pl-3 py-5">
+            <div class="col-12">
+                <div class="row pb-3 justify-content-sm-center justify-content-md-start">
+                    <h2>Customer Reviews</h2>
+                </div>
+
+                <form id="newReview" action="php/add_review.php">
+                    <div class="form-group">
+                        <label for="userReview">Leave a review...</label>
+                        <textarea class="form-control" id="userReview" rows="3"></textarea>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                </form>
+
+                <div id="otherReviews">
+                    <div class="row p-3 otherReview">
+                        <a href="#">
+                            <img src="res/user.png" class="userPhoto pt-2 pb-3" alt="user1">
+                        </a>
+                        
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col userName">
+                                    <a href="#">
+                                        User #1
+                                    </a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    Aaaaaaaaaaaaaaaaaa.
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col timestamp">
+                                    17:00, 23/11/2021
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row p-3 otherReview">
+                        <a href="#">
+                            <img src="res/user.png" class="userPhoto pt-2 pb-3" alt="user2">
+                        </a>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col userName">
+                                    <a href="#">
+                                        User #2
+                                    </a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    Bbbbbbbbbbbbbbbbbbbbbbbbbbb. Ccccccccccccccc.
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col timestamp">
+                                    17:45, 23/11/2021
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 
     <!-- end site -->
@@ -246,7 +334,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     

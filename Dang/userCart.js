@@ -21,6 +21,8 @@ $(document).ready(function() {
 $(".btn-danger").click(function() {
     this.closest("tr").remove();
 
+    // TODO: also remove from user's cart
+
     checkEmpty();
 });
 
