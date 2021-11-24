@@ -19,7 +19,6 @@
 
     // Upload image
     $profileImageName = time() . '-' . $_FILES["profileImage"]["name"];
-    // For image upload
     $target_dir = "images/icon";
     $target_file = $target_dir . basename($profileImageName);
 
@@ -55,6 +54,7 @@
             $msg = "alert-danger";
           }
     }
+    // End upload image
   }
 ?>
 
@@ -468,7 +468,7 @@
                                                 </div>
                                                 
                                                 <div class="row mt-3">
-                                                    <div class="col-md-10"
+                                                    <div class="col-md-10">
                                                         <label for="birthday">Date of Birth</label>
                                                         <input type="date" name="birthday" class="form-control" id="birthday" value="<?php echo $row['birthday']; ?>" />
                                                     </div>
