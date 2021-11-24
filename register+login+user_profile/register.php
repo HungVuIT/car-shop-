@@ -19,7 +19,7 @@ if (isset($_POST['signup'])) {
 	$cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);	
 	if (!preg_match("/^[a-zA-Z ]+$/",$user_name) || strlen($user_name) < 4) {
 		$error1 = true;
-		$uname_error = "Name must be minimum of 4 characters, contain only alphabets and space";
+		$uname_error = "Name must have a minimum of 4 characters, contain only alphabet letters and spaces";
 	}
 	if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
 		$error2 = true;
@@ -66,8 +66,8 @@ if (isset($_POST['signup'])) {
 							<div class="tool-tip">
 								<i class="tool-tip__icon">i</i>
 								<p class="tool-tip__info">
-								<span class="info"><span class="info__title">Please enter a valid user name that has a minium of four
-									characters. User name only have aphabet and blank space.
+								<span class="info"><span class="info__title">Please enter a valid user name that has a minimum of 4
+									characters. User name may only have alphabet letters and blank spaces.
 								</span>
 								</p>
 							</div>
@@ -88,8 +88,8 @@ if (isset($_POST['signup'])) {
 							<div class="tool-tip">
 								<i class="tool-tip__icon">i</i>
 								<p class="tool-tip__info">
-								<span class="info"><span class="info__title">Please enter a valid password that has a minium of eight
-                        characters. Password must have at least one number and one letter.
+								<span class="info"><span class="info__title">Please enter a valid password that has a minimum of 8
+                        characters. Password must have at least 1 number and 1 letter.
 								</span>
 								</p>
 							</div>

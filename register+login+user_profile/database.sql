@@ -25,24 +25,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `user_name` varchar(255) NOT NULL,
-  `birthday` DATE NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `user_img` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  id int(11) NOT NULL,
+  user_name varchar(255) NOT NULL,
+  birthday DATE NOT NULL,
+  email varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
+  user_img varchar(255) NOT NULL
+)
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `user_name`, `birthday`, `email`, `password`) VALUES
-(1, 'Pure', '2001-10-31', 'example@gmail.com', '12345678');
+(1, 'Pure', '2001-10-31', 'example@gmail.com', '25d55ad283aa400af464c76d713c07ad');     -- Password is '12345678' after hashing with MD5
 
 --
 -- Indexes for dumped tables
