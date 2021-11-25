@@ -1,6 +1,7 @@
 <?php 
-    require 'db_connect.php';
-
+    require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+    $conn = connect();
+    
     $user_id = $_POST['user_id'];
     $userName = "tempUser";     // TODO: query userName from DB (using user_ID/session?)
     $review = $_POST['review'];

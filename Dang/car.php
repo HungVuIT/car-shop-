@@ -157,7 +157,7 @@
 
         <!-- Main info -->
         <div class="row justify-content-between">
-            <div class="col-4 pl-sm-5 pl-md-3">
+            <div class="col-7 pl-sm-5 pl-md-3">
                 <!-- Basic info + add to cart -->
                 <h2 id="carName">
                     <?php echo $name ?>
@@ -211,13 +211,13 @@
                     <tr>
                         <th>Engine</th>
                         <td id="carEngine">
-                            <?php echo $engine ?>
+                            <?php echo $engine . "L" ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Warranty</th>
                         <td id="carWarranty">
-                            <?php echo $warranty ?>
+                            <?php echo $warranty . " years" ?>
                         </td>
                     </tr>
                 </table>

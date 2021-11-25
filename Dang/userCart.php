@@ -1,9 +1,21 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT'] . "lapTrinhWeb/db/db_connect.php";
+    session_start();
 
-    // TODO: get cart data (from current user/session?)
-    $rand_id = rand(1,12);
-    $query = "SELECT * FROM Car WHERE (Id = $rand_id) or (Id = 13 - $rand_id)";
+    if (!isset($_SESSION["id"])) {
+        echo "Location: /lapTrinhWeb/register+login+user_profile/register.php";
+        header("Location: /lapTrinhWeb/register+login+user_profile/register.php");
+    }
+
+    // echo "Current session ID = " . $_SESSION["id"];
+
+    require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+    $conn = connect();
+
+    $query = "SELECT `Order`.*, `Car`.`name`, `Car`.`price` FROM 
+                (`User` JOIN `Order` ON 
+                    (`User`.`id`=`Order`.`user_id` AND `User`.`id`={$_SESSION["id"]})
+                        JOIN `Car` ON `Car`.`id`=`Order`.`car_id`)";
+        //Car WHERE (Id = $rand_id) or (Id = 13 - $rand_id)";
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
@@ -123,77 +135,64 @@
                     <thead>
                         <tr>
                             <th scope="col" class="col-sm-5 col-md-6">Car</th>
-                            <th scope="col" class="col-sm-4 col-md-4">Info</th>
-                            <th scope="col" class="col-sm-2 col-md-1">Price</th>
-                            <th scope="col" class="col-sm-1"></th>
+                            <th scope="col" class="col-sm-2">Unit Price</th>
+                            <th scope="col" class="col-sm-3 col-md-2">Quantity</th>
+                            <th scope="col" class="col-sm-2">Total Price</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php
                             while ($row = mysqli_fetch_assoc($result)) {
-                                $id             = (int) $row["id"];
+                                $car_id         = (int) $row["car_id"];
                                 $name           = $row["name"];
-                                $brand          = $row["brand"];
                                 $price          = (float) $row["price"];
-                                $seats          = (int) $row["seats"];
-                                $transmission   = ucfirst($row["transmission"]);
+                                $quantity       = (int) $row["quantity"];
+
                         ?>
                         
-                        <tr class="carItem">
+                        <tr class="carItem" 
+                            data-user-id="<?php echo $_SESSION["id"] ?>"
+                            data-car-id ="<?php echo $car_id ?>">
                             <td>
-                                <img src="res/car<?php echo $id % 2 + 1?>.jpg" class="carImg col-sm-12 col-md-11 p-0" 
-                                    alt="<?php echo $name ?>">
+                                <a href="car.php?car_id=<?php echo $car_id ?>">
+                                    <img src="res/car<?php echo $car_id % 2 + 1?>.jpg" class="carImg col-sm-12 col-md-11 p-0" 
+                                        alt="<?php echo $name ?>">
+                                </a>
                                 <br>
-                            </td>
-
-                            <td>
-                                <div class="my-0">
-                                    <div class="row d-md-flex my-sm-2 my-lg-3">
-                                        <div class="col-sm-5 col-md-6 text-right px-1">Name:</div>
-
-                                        <div class="carName col-sm-7 col-md-6 text-left px-1">
-                                            <?php echo $name ?>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row d-md-flex my-sm-2 my-lg-3">
-                                        <div class="col-sm-5 col-md-6 text-right px-1">Brand:</div>
-
-                                        <div class="carBrand col-sm-7 col-md-6 text-left px-1">
-                                            <?php echo $brand ?>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row d-none d-md-flex my-sm-2 my-lg-3">
-                                        <div class="col-6 text-right px-1">Seats:</div>
-                                        
-                                        <div class="carSeats col-6 text-left px-1">
-                                            <?php echo $seats?>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row d-none d-md-flex my-md-2 my-lg-3">
-                                        <div class="col-6 text-right px-1">Transmission:</div>
-                                        
-                                        <div class="carTransmission col-6 text-left px-1">
-                                            <?php echo $transmission ?>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row justify-content-center pt-sm-3 pt-md-2">
-                                        <a class="carLink" 
-                                          href="car.php?car_id=<?php echo $id ?>">See full details</a>
-                                    </div>
-                                </div>
+                                <a href="car.php?car_id=<?php echo $car_id ?>">
+                                    <h5><?php echo $name ?></h5>
+                                </a>
                             </td>
 
                             <td class="carPrice">
                                 <?php echo "$" . number_format($price, 2) ?>
                             </td>
+                                
+                            <td class="carQuantityInput">
+                                <form action="php/change_quantity.php">
+                                    <div class="row justify-content-center d-md-flex my-sm-2 my-lg-3">
+                                        <div class="col-3 p-0">
+                                            <a href="#!" class="carQuantityBtn incr">
+                                                <img src="res/add.png"/>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-2 carQuantity p-0">
+                                            <?php echo $quantity ?>
+                                        </div>
+                                        
+                                        <div class="col-3 p-0">
+                                            <a href="#!" class="carQuantityBtn decr">
+                                                <img src="res/sub.png"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
                             
-                            <td>
-                                <div class="p-0 my-auto">
+                            <td class="carPrice">
+                                <!-- <div class="p-0 my-auto">
                                     <div class="row justify-content-center">
                                         <button class="btn btn-sm btn-success">Buy</button>
                                     </div>
@@ -201,7 +200,9 @@
                                     <div class="row justify-content-center">
                                         <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> 
                                     </div>
-                                </div>
+                                </div> -->
+
+                                <?php echo "$" . number_format($price, 2) ?>
                             </td>
                         </tr>
 

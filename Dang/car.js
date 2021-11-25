@@ -14,7 +14,7 @@ $("#newReview").submit(function(e) {
     
     $.post(url, data,
         function(data, status) {
-            console.log(data);
+            console.log("Got data = " + data);
             $("#otherReviews").append(data);    // add user's review to list of reviews
         }
     );
