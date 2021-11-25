@@ -5,7 +5,8 @@
     header("Location: register.php");
   }
 
-  include "db_connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+  $conn = connect();
 
   $msg = "";
   $msg_class = "";
@@ -362,7 +363,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <?php 
-                                            $sql = "SELECT * FROM users WHERE id='{$_SESSION["id"]}'";
+                                            $sql = "SELECT * FROM user WHERE id='{$_SESSION["id"]}'";
                                             $result = mysqli_query($conn, $sql);
                                             if (mysqli_num_rows($result) > 0) {
                                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -370,14 +371,14 @@
 
                                         <div class="image">
                                             <?php if (empty($row['user_img'])) : ?>
-                                                <img src="images/icon/default_avatar.png" alt="<?=$row['user_name'];?>"/>
+                                                <img src="images/icon/default_avatar.png" alt="<?=$row['name'];?>"/>
                                             <?php else : ?>
                                                 <img src="<?php echo 'images/icon' . $row['user_img'] ?>" alt="avatar" id="profileDisplay">
                                             <?php endif; ?>    
                                         </div>    
 
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#"><?=$row['user_name'];?></a>
+                                            <a class="js-acc-btn" href="#"><?=$row['name'];?></a>
                                         </div>
 
                                         <div class="account-dropdown js-dropdown">
@@ -385,7 +386,7 @@
                                                 <div class="image">
                                                     <a href="#">
                                                         <?php if (empty($row['user_img'])) : ?>
-                                                            <img src="images/icon/default_avatar.png" alt="<?=$row['user_name'];?>"/>
+                                                            <img src="images/icon/default_avatar.png" alt="<?=$row['name'];?>"/>
                                                         <?php else : ?>
                                                             <img src="<?php echo 'images/icon' . $row['user_img'] ?>" alt="avatar" id="profileDisplay">
                                                         <?php endif; ?>
@@ -393,7 +394,7 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?=$row['user_name'];?></a>
+                                                        <a href="#"><?=$row['name'];?></a>
                                                     </h5>
                                                     <span class="email"><?=$row['email'];?></span>
                                                 </div>
@@ -455,13 +456,13 @@
                                         <?php endif; ?>
                                         <div class="col-md-12">
                                                 <?php 
-                                                    $sql = "SELECT * FROM users WHERE id='{$_SESSION["id"]}'";
+                                                    $sql = "SELECT * FROM user WHERE id='{$_SESSION["id"]}'";
                                                     $result = mysqli_query($conn, $sql);
                                                     if (mysqli_num_rows($result) > 0) {
                                                         while ($row = mysqli_fetch_assoc($result)) {
                                                 ?>
                                                 <div class="row mt-3">
-                                                    <div class="col-md-10"><label class="labels">User Name</label><input type="text" class="form-control" placeholder="User Name" id="user_name" name="user_name" value="<?php echo $row['user_name']; ?>" required></div>
+                                                    <div class="col-md-10"><label class="labels">User Name</label><input type="text" class="form-control" placeholder="User Name" id="user_name" name="user_name" value="<?php echo $row['name']; ?>" required></div>
                                                     <div class="col-md-10"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" id="email" name="email" value="<?php echo $row['email']; ?>" required></div>
                                                     <div class="col-md-10"><label class="labels">Phone Number</label><input type="text" class="form-control" placeholder="Phone Number" id="phone" name="phone" value="<?php echo $row['phone']; ?>"></div>
                                                     <div class="col-md-10"><label class="labels">Password</label><input type="password" class="form-control" placeholder="Password" id="password" name="password" value="<?php echo $row['password']; ?>" required></div>
@@ -490,7 +491,7 @@
                                                         <h4>Update image</h4>
                                                     </div>
                                                     <?php 
-                                                        $sql = "SELECT * FROM users WHERE id='{$_SESSION["id"]}'";
+                                                        $sql = "SELECT * FROM user WHERE id='{$_SESSION["id"]}'";
                                                         $result = mysqli_query($conn, $sql);
                                                         $row = mysqli_fetch_assoc($result);
                                                         if (empty($row['user_img'])) : 

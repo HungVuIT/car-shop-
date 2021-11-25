@@ -1,6 +1,6 @@
 <?php
-    require "php/db_connect.php";
-
+    require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+    $conn = connect();
 
     $id = $_GET["car_id"];
     $query = "SELECT * FROM Car WHERE Id={$id}";
@@ -16,11 +16,13 @@
 
     $name           = $car_data["name"];
     $brand          = $car_data["brand"];
-    $price          = (float)$car_data["price"];
-    $year           = (int)$car_data["year"];
-    $seats          = (int)$car_data["seats"];
+    $price          = (float) $car_data["price"];
+    $year           = (int) $car_data["year"];
+    $seats          = (int) $car_data["seats"];
     $color          = $car_data["color"];
     $transmission   = ucfirst($car_data["transmission"]);
+    $engine         = (float) $car_data["engine"];
+    $warranty       = (int) $car_data["warranty"];
     $description    = $car_data["description"];
 
 ?>
@@ -158,23 +160,17 @@
             <div class="col-4 pl-sm-5 pl-md-3">
                 <!-- Basic info + add to cart -->
                 <h2 id="carName">
-                    <?php
-                        echo $name;
-                    ?>
+                    <?php echo $name ?>
                 </h2>
 
                 <h3 id="carPrice">
-                    <?php
-                        echo "$" . number_format($price, 2);
-                    ?>
+                    <?php echo "$" . number_format($price, 2) ?>
                 </h3>
 
                 <button class="btn btn-primary my-4">Add to cart</button>
 
                 <p id="carDescription">
-                    <?php
-                        echo "Description: " . $description;
-                    ?>
+                    <?php echo "Description: " . $description; ?>
                 </p>
             </div>
 
@@ -185,70 +181,59 @@
                     <tr>
                         <th>Brand</th>
                         <td id="carBrand">
-                            <?php
-                                echo $brand;
-                            ?>
+                            <?php echo $brand ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Year</th>
                         <td id="carYear">
-                            <?php
-                                echo $year;
-                            ?>
+                            <?php echo $year ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Color</th>
                         <td id="carColor">
-                            <?php
-                                echo $color;
-                            ?>
+                            <?php echo $color ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Seats</th>
                         <td id="carSeats">
-                            <?php
-                                echo $seats;
-                            ?>
+                            <?php echo $seats ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Transmission</th>
                         <td id="carTransmission">
-                            <?php
-                                echo $transmission;
-                            ?>
+                            <?php echo $transmission ?>
                         </td>
                     </tr>
-                    <!-- <tr>
+                    <tr>
                         <th>Engine</th>
                         <td id="carEngine">
-                            <?php
-                                //echo $engine;
-                            ?>
+                            <?php echo $engine ?>
                         </td>
                     </tr>
                     <tr>
                         <th>Warranty</th>
                         <td id="carWarranty">
-                            <?php
-                                //echo $warranty;
-                            ?>
+                            <?php echo $warranty ?>
                         </td>
-                    </tr> -->
+                    </tr>
                 </table>
             </div>
         </div>
 
 
-        <div id="reviewList" class="row pl-3 py-5">
+
+
+        <div id="reviewSection" class="row pl-3 py-5">
             <div class="col-12">
                 <div class="row pb-3 justify-content-sm-center justify-content-md-start">
                     <h2>Customer Reviews</h2>
                 </div>
 
+                <!-- TODO: hide if not logged in -->
                 <form id="newReview" action="php/add_review.php">
                     <div class="form-group">
                         <label for="userReview">Leave a review...</label>
@@ -256,6 +241,7 @@
                         <button type="submit" class="btn btn-primary">Post</button>
                     </div>
                 </form>
+
 
                 <div id="otherReviews">
                     <div class="row p-3 otherReview">
@@ -289,36 +275,6 @@
                         </div>
                     </div>
 
-                    <div class="row p-3 otherReview">
-                        <a href="#">
-                            <img src="res/user.png" class="userPhoto pt-2 pb-3" alt="user2">
-                        </a>
-
-                        <div class="col-4">
-                            <div class="row">
-                                <div class="col userName">
-                                    <a href="#">
-                                        User #2
-                                    </a>
-                                </div>
-                                
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    Bbbbbbbbbbbbbbbbbbbbbbbbbbb. Ccccccccccccccc.
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col timestamp">
-                                    17:45, 23/11/2021
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
 
 

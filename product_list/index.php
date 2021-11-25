@@ -1,18 +1,18 @@
 <?php
-  require "./src/php/DBconnect.php";
-  $con = connect();
+    require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+    $con = connect();
 
-  # Pagination
-  $result_per_page = 4; 
-  if( isset($_GET["page"]) ){
-    $page = $_GET["page"];
-    settype($page, "int");
-  }else{
-    $page = 1;	
-  }
-  // Prev + Next
-  $prev = $page - 1;
-  $next = $page + 1;
+    // Pagination
+    $result_per_page = 4; 
+    if( isset($_GET["page"]) ){
+        $page = $_GET["page"];
+        settype($page, "int");
+    }else{
+        $page = 1;	
+    }
+    // Prev + Next
+    $prev = $page - 1;
+    $next = $page + 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">

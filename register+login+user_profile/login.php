@@ -1,7 +1,10 @@
 <?php 
 ob_start();
 include('header.php');
-include_once("db_connect.php");
+
+require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+$conn = connect();
+
 session_start();
 if(isset($_SESSION['id'])!="") {
 	header("Location: profile.php");
@@ -10,8 +13,9 @@ if (isset($_POST['login'])) {
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
 	$hash_password = md5($password);
-	$result = mysqli_query($conn, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" .$hash_password. "'");
-	if ($row = mysqli_fetch_array($result)) {
+	$result = mysqli_query($conn, "SELECT * FROM User WHERE email = '" . $email. "' and password = '" .$hash_password. "'");
+    
+	if ($row = mysqli_fetch_assoc($result)) {
 		$_SESSION['id'] = $row['id'];
 		$_SESSION['user_name'] = $row['user_name'];		
 		header("Location: profile.php");

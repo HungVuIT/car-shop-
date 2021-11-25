@@ -1,7 +1,10 @@
 <?php 
 ob_start();
 include('header.php');
-include_once("db_connect.php");
+
+require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+$conn = connect();
+
 session_start();
 if(isset($_SESSION['id'])) {
 	header("Location: profile.php");
@@ -34,10 +37,11 @@ if (isset($_POST['signup'])) {
 		$cpassword_error = "Password and Confirm Password doesn't match";
 	}
 	if (!$error1 && !$error2 && !$error3 && !$error4) {
-		if(mysqli_query($conn, "INSERT INTO users(user_name, email, password) VALUES('" . $user_name . "', '" . $email . "', '" . md5($password) . "')")) {
+        $result = mysqli_query($conn, "INSERT INTO `User`(`name`, `email`, `password`) VALUES('" . $user_name . "', '" . $email . "', '" . md5($password) . "')");
+		if($result) {
 			$success_message = "Successfully Registered!";
 		} else {
-			$error_message = "Error in registering...Please try again later!";
+			$error_message = "Error in registering...Please try again later!" . mysqli_error($conn);
 		}
 	}
 }

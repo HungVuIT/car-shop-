@@ -1,5 +1,5 @@
 <?php
-    require "php/db_connect.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "lapTrinhWeb/db/db_connect.php";
 
     // TODO: get cart data (from current user/session?)
     $rand_id = rand(1,12);

@@ -1,16 +1,28 @@
+CREATE DATABASE `database`;
+USE `database`;
+
 SET time_zone = "+07:00";   -- VN time
 
 
 -- Tables without Foreign Keys
 
+CREATE TABLE `Contact` (
+    `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(40),
+    `email` varchar(50),
+    `message` varchar(1000),
+   PRIMARY KEY(id)
+);
+
+
 CREATE TABLE `User` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` varchar(30) NOT NULL,
-    `password` varchar(30) NOT NULL,
+    `password` varchar(32) NOT NULL,
     `email` varchar(255) NOT NULL,
     `phone` varchar(15),
     `birthday` DATE,
-    `img_path` varchar(255) NOT NULL DEFAULT "res/",   -- TODO: do I really need DEFAULT here?
+    `img_path` varchar(255) NOT NULL DEFAULT "register+login+user_profile\images\icon\default_avatar.png",   -- TODO: move folder to root instead
     PRIMARY KEY (`id`)
 );
 
