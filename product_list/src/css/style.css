@@ -63,6 +63,9 @@
 .my-btn:hover{
     background-color:  rgb(9, 127, 156);
 }
+.fas{
+    color: #fff;
+}
 
 .page-item.active .page-link {
     color: #fff !important;
@@ -78,4 +81,29 @@
 .page-item .page-link {
     color: rgb(96, 181, 202) !important;
     background:  #fff !important;
+}
+
+.search-box input[type="text"], .result{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.result{
+    position: absolute;        
+    z-index: 999;
+    top: 100%;
+    left: 0;
+}
+
+/* Formatting result items */
+.result p{
+    background-color: #fff;
+    margin: 0;
+    padding: 7px 10px;
+    border: 1px solid #CCCCCC;
+    border-top: none;
+    cursor: pointer;
+}
+.result p:hover{
+    background: #f2f2f2;
 }

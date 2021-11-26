@@ -167,10 +167,14 @@ $next = $page + 1;
       <?php
       $from = ($page - 1) * $result_per_page;
       if ($from < 0) $from = 0;
-
-      $query = "SELECT * FROM car LIMIT $from, $result_per_page";
-      $result = mysqli_query($con, $query);
-
+      $stmt = mysqli_prepare($con, "SELECT * FROM car WHERE name LIKE ? LIMIT $from, $result_per_page");
+      mysqli_stmt_bind_param($stmt, "s", $param_term);
+      $param_term = '%' . $_GET["keyword"] . '%';
+      if (mysqli_stmt_execute($stmt)) {
+        $result = mysqli_stmt_get_result($stmt);
+      } else {
+        echo "fail";
+      }
       while ($cars = mysqli_fetch_array($result)) { ?>
 
         <div class="col-md-3 col-xs-6">
@@ -197,13 +201,20 @@ $next = $page + 1;
         <a class="page-link" href="<?php if ($page <= 1) {
                                       echo '#';
                                     } else {
-                                      echo "?page=" . $prev;
+                                      echo "?page=" . $prev. "&keyword=". $_GET["keyword"];
                                     } ?>">Previous
         </a>
       </li>
 
       <?php
-      $result = mysqli_query($con, "SELECT id FROM car");
+      $stmt = mysqli_prepare($con, "SELECT id FROM car WHERE name LIKE ?");
+      mysqli_stmt_bind_param($stmt, "s", $param_term);
+      $param_term = '%' . $_GET["keyword"] . '%';
+      if (mysqli_stmt_execute($stmt)) {
+        $result = mysqli_stmt_get_result($stmt);
+      } else {
+        echo "fail";
+      }
       $total_row = mysqli_num_rows($result);
       $total_page = ceil($total_row / $result_per_page);
       for ($i = 1; $i <= $total_page; $i++) :
@@ -211,7 +222,7 @@ $next = $page + 1;
         <li class="page-item <?php if ($page == $i) {
                                 echo 'active';
                               } ?>">
-          <a class="page-link" href="<?php echo "?page=" .$i; ?>"> <?= $i; ?> </a>
+          <a class="page-link" href="<?php echo "?page=" .$i. "&keyword=". $_GET["keyword"]; ?>"> <?= $i; ?> </a>
         </li>
       <?php endfor; ?>
 
@@ -221,7 +232,7 @@ $next = $page + 1;
         <a class="page-link" href="<?php if ($page >= $total_page) {
                                       echo '#';
                                     } else {
-                                      echo "?page=" . $next;
+                                      echo "?page=" . $next. "&keyword=". $_GET["keyword"];
                                     } ?>">Next
         </a>
       </li>
