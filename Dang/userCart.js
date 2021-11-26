@@ -44,11 +44,15 @@ $(".carQuantityBtn").click(function() {
     }
     
     //console.log("new quantity = " + carQuantity);
+
+    var user_id = parseInt(carItem.attr("data-user-id"));
+    var car_id  = parseInt(carItem.attr("data-car-id"));
     
     var url = carItem.find("form").attr("action");
     var data = {
-        "user_id" : carItem.attr("data-user-id"),
-        "car_id"  : carItem.attr("data-car-id"),
+        "req_type": "update",
+        "user_id" : user_id,
+        "car_id"  : car_id,
         "quantity": carQuantity
     };
 

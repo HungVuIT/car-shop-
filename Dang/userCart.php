@@ -1,10 +1,8 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION["id"])) {
-        echo "Location: /lapTrinhWeb/register+login+user_profile/register.php";
+    if (!isset($_SESSION["id"]))
         header("Location: /lapTrinhWeb/register+login+user_profile/register.php");
-    }
 
     // echo "Current session ID = " . $_SESSION["id"];
 
@@ -170,7 +168,7 @@
                             </td>
                                 
                             <td class="carQuantityInput">
-                                <form action="php/change_quantity.php">
+                                <form action="php/order_quantity.php">
                                     <div class="row justify-content-center d-md-flex my-sm-2 my-lg-3">
                                         <div class="col-3 p-0">
                                             <a href="#!" class="carQuantityBtn incr">

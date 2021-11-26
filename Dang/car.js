@@ -1,12 +1,64 @@
-$("#newReview").submit(function(e) {
+// On ready
+$(document).ready(function() {
+    
+});
 
-    e.preventDefault(); // override form's default "submit"
+
+$("#addCartForm>button").click(function(e) {
+    e.preventDefault();
+
+    var form = $("#addCartForm");
+    var user_id = parseInt($("body").attr("data-user-id"));
+    var car_id  = parseInt($("body").attr("data-car-id"));
+
+    var url = form.attr("action");
+    var data_get = {
+        "req_type": "get",
+        "user_id" : user_id,
+        "car_id"  : car_id
+    };
+    
+    $.post(url, data_get,
+        function(response, status) {
+            var carQuantity = parseInt(response);
+
+            if (carQuantity >= 10) {
+                alert("You can't buy more than 10!");
+                return;
+            }
+
+
+            carQuantity++;
+
+            var data_update = {
+                "req_type": "update",
+                "user_id" : user_id,
+                "car_id"  : car_id,
+                "quantity": carQuantity
+            };
+        
+            // Send AJAX request to server, update Order's `quantity`
+            $.post(url, data_update);
+
+        }
+    );
+});
+
+
+
+$("#newReview").submit(function(e) {
+    // override form's default "submit"
+    e.preventDefault();
+
+    var user_id = parseInt($("body").attr("data-user-id"));
+    var car_id  = parseInt($("body").attr("data-car-id"));
 
     var form = $(this);
     var url = form.attr('action');
 
     var data = {
-        "user_id": "1", // TODO: get user_id from session?
+        "user_id": user_id,
+        "car_id" : car_id,
         "review": $("#userReview").val()
     }
 

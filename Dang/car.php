@@ -1,9 +1,24 @@
 <?php
+    session_start();
+
     require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
     $conn = connect();
 
-    $id = $_GET["car_id"];
-    $query = "SELECT * FROM Car WHERE Id={$id}";
+
+    // ---------- Get car info -----------------
+    $car_id = $_GET["car_id"];
+    $user_id = isset($_SESSION["id"])? $_SESSION["id"] : "guest";   // TODO: guest stuff
+
+    $query = "";
+    if (isset($_SESSION["id"])) {
+        $query = "SELECT `Car`.*, `Order`.`quantity` FROM 
+                    (`Car` JOIN `Order` ON `Car`.`id`=`Order`.`car_id`)
+                    WHERE `Car`.`id`={$car_id} AND `Order`.`user_id`={$user_id}";
+    }
+    else {
+        // TODO: guests can still buy!!!!
+        $query = "SELECT * FROM `Car` WHERE `Car`.`id`={$car_id}";
+    }
     $result = mysqli_query($conn, $query);
 
     if (!$result) {
@@ -14,7 +29,7 @@
 
     $car_data = mysqli_fetch_assoc($result);
 
-    $name           = $car_data["name"];
+    $car_name       = $car_data["name"];
     $brand          = $car_data["brand"];
     $price          = (float) $car_data["price"];
     $year           = (int) $car_data["year"];
@@ -24,6 +39,20 @@
     $engine         = (float) $car_data["engine"];
     $warranty       = (int) $car_data["warranty"];
     $description    = $car_data["description"];
+
+
+    // ------- Get review list -------------------
+    $query = "SELECT `CarReview`.*, `User`.`name` FROM 
+                (`CarReview` JOIN `User` ON `CarReview`.`user_id`=`User`.`id`)
+                    WHERE `car_id`={$car_id}";
+
+    $result = mysqli_query($conn, $query);
+
+    if (!$result) {
+        $message  = 'Invalid query: ' . mysqli_error($conn) . '<br>'; 
+        $message .= 'Whole query: ' . $query;
+        die($message);
+    }
 
 ?>
 
@@ -42,12 +71,13 @@
 
     <link href="car.css" rel="stylesheet">
     <link rel="icon" href="res/icon.png">
-    <title><?php echo $name ?> - Carworld</title>
+    <title><?php echo $car_name ?> - Carworld</title>
 </head>
 
 
   
-<body>
+<body data-user-id="<?php echo $user_id ?>"
+      data-car-id ="<?php echo $car_id  ?>">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         
         <!-- Site logo -->
@@ -160,14 +190,16 @@
             <div class="col-7 pl-sm-5 pl-md-3">
                 <!-- Basic info + add to cart -->
                 <h2 id="carName">
-                    <?php echo $name ?>
+                    <?php echo $car_name ?>
                 </h2>
 
                 <h3 id="carPrice">
                     <?php echo "$" . number_format($price, 2) ?>
                 </h3>
 
-                <button class="btn btn-primary my-4">Add to cart</button>
+                <form id="addCartForm" action="php/order_quantity.php">
+                    <button class="btn btn-primary my-4">Add to cart</button>
+                </form>
 
                 <p id="carDescription">
                     <?php echo "Description: " . $description; ?>
@@ -233,18 +265,69 @@
                     <h2>Customer Reviews</h2>
                 </div>
 
-                <!-- TODO: hide if not logged in -->
-                <form id="newReview" action="php/add_review.php">
+                <form id="newReview" action="php/add_review.php" 
+                    <?php
+                        if (!isset($_SESSION["id"])) {
+                            echo "class=\"d-none\"";
+                        }
+                    ?>>
+
                     <div class="form-group">
                         <label for="userReview">Leave a review...</label>
-                        <textarea class="form-control" id="userReview" rows="3"></textarea>
+                        <textarea id="userReview" class="form-control" rows="3"></textarea>
                         <button type="submit" class="btn btn-primary">Post</button>
                     </div>
                 </form>
 
 
                 <div id="otherReviews">
-                    <div class="row p-3 otherReview">
+
+                    
+                    <?php
+                        while ($review = mysqli_fetch_assoc($result)) {
+                            $userName = $review["name"];
+                            $reviewText = $review["review"];
+                            $date_posted = $review["date_posted"];
+                            $date_formatted = (new DateTime($date_posted))->format("H:i, j/m/Y");
+                    ?>
+                    <div class="row p-3 otherUserReview">
+                        <a href="#">
+                            <img src="res/user.png" class="otherUserPhoto pt-2 pb-3" alt="user2">
+                        </a>
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col otherUserName">
+                                    <a href="#">
+                                        <?php echo $userName ?>
+                                    </a>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <?php echo $reviewText ?>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col timestamp">
+                                    <?php echo $date_formatted ?>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <?php
+                        }
+                    ?>
+
+
+
+                    <!-- <div class="row p-3 otherReview">
                         <a href="#">
                             <img src="res/user.png" class="userPhoto pt-2 pb-3" alt="user1">
                         </a>
@@ -273,7 +356,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 
