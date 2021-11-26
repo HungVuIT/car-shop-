@@ -38,6 +38,9 @@ CREATE TABLE `Car` (
     `price` int(11) NOT NULL,
     `warranty` int(2),                  -- years
     `description` varchar(2048),
+     `car_img1` varchar(255),
+     `car_img2` varchar(255),
+     `car_img3` varchar(255),
     PRIMARY KEY (`id`)
 );
 
