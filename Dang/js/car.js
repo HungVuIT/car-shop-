@@ -1,14 +1,10 @@
-// On ready
-$(document).ready(function() {
-    
-});
-
+// Session events
 
 $("#addCartForm>button").click(function(e) {
     e.preventDefault();
-
+    
     var form = $("#addCartForm");
-    var user_id = parseInt($("body").attr("data-user-id"));
+    var user_id = parseInt($("body").attr("data-sess-user-id"));
     var car_id  = parseInt($("body").attr("data-car-id"));
 
     var url = form.attr("action");
@@ -17,26 +13,25 @@ $("#addCartForm>button").click(function(e) {
         "user_id" : user_id,
         "car_id"  : car_id
     };
-    
+
+    //console.log("Data 1 = " + data_get.car_id);
+        
     $.post(url, data_get,
         function(response, status) {
             var carQuantity = parseInt(response);
-
+                        
             if (carQuantity >= 10) {
                 alert("You can't buy more than 10!");
                 return;
             }
 
-
-            carQuantity++;
-
             var data_update = {
-                "req_type": "update",
+                "req_type": "add",
                 "user_id" : user_id,
                 "car_id"  : car_id,
                 "quantity": carQuantity
             };
-        
+            
             // Send AJAX request to server, update Order's `quantity`
             $.post(url, data_update);
 
@@ -45,12 +40,11 @@ $("#addCartForm>button").click(function(e) {
 });
 
 
-
 $("#newReview").submit(function(e) {
     // override form's default "submit"
     e.preventDefault();
 
-    var user_id = parseInt($("body").attr("data-user-id"));
+    var user_id = parseInt($("body").attr("data-sess-user-id"));
     var car_id  = parseInt($("body").attr("data-car-id"));
 
     var form = $(this);
@@ -59,17 +53,34 @@ $("#newReview").submit(function(e) {
     var data = {
         "user_id": user_id,
         "car_id" : car_id,
-        "review": $("#userReview").val()
+        "review": $("#sessUserReview").val()
     }
-
-    console.log("Form data:" + data);
     
     $.post(url, data,
-        function(data, status) {
-            console.log("Got data = " + data);
-            $("#otherReviews").append(data);    // add user's review to list of reviews
+        function(response, status) {
+            $("#userReviews").append(response);    // add user's review to list of reviews
         }
     );
+});
 
-    
+
+
+// Delete self reviews
+$("#userReviews").on("click", ".delReview", function() {
+    console.log("clicked!");
+    var review = $(this).closest(".userReview");
+    var reviewID = parseInt(review.attr("data-review-id"));
+    var userID = parseInt(review.attr("data-user-id"));
+
+    var url = "php/del_review.php";
+    var data = {
+        "user_id"   : userID,
+        "review_id" : reviewID
+    };
+
+    console.log("Before delete, data = " + JSON.stringify(data));
+
+    $.post(url, data);
+
+    review.remove();
 });

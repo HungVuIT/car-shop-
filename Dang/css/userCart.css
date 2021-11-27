@@ -1,0 +1,20 @@
+/* Main cart */
+
+#cartTitle {
+    background-color:rgb(194, 237, 240);
+    padding: 2em;
+}
+
+#cart { width: 96%; }
+
+.carImg {
+    width: 100%;
+    height: auto;
+}
+
+.carItem>td { vertical-align: middle; }
+
+
+#totalRow {
+    background-color:rgb(154, 255, 184);
+}

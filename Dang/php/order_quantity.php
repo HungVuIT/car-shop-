@@ -23,19 +23,34 @@
         $query = "SELECT `quantity` FROM `Order`
                     WHERE `user_id`={$user_id} AND `car_id`={$car_id}";
     }
-    else if ($req_type == "update") {
-        if ($quantity > 0) {
+    else if ($req_type == "add") {
+        $quantity++;
+        if ($quantity == 1) {
             // Update
+            $query = "INSERT INTO `Order`(`user_id`, `car_id`, `quantity`)
+                        VALUES ({$user_id}, {$car_id}, {$quantity})";
+        }
+        else {
             $query = "UPDATE `Order`
                         SET `quantity`={$quantity}
                         WHERE `user_id`={$user_id} AND `car_id`={$car_id}";
         }
-        else {
-            // Delete
+    }
+    else if ($req_type == "sub") {
+        $quantity--;
+        // Delete
+        if ($quantity == 0) {
             $query = "DELETE FROM `Order`
                         WHERE `user_id`={$user_id} AND `car_id`={$car_id}";
         }
+        else {
+            $query = "UPDATE `Order`
+                        SET `quantity`={$quantity}
+                        WHERE `user_id`={$user_id} AND `car_id`={$car_id}";            
+        }
     }
+    
+
 
     $result = mysqli_query($conn, $query);
 
@@ -45,8 +60,15 @@
         die($message); 
     }
 
-    if ($req_type == "get")
-        echo mysqli_fetch_assoc($result)["quantity"];
+    //echo "Query to be executed = {$query}";
+    if ($req_type == "get") {
+        $order_data = mysqli_fetch_assoc($result);
+
+        if (isset($order_data))
+            echo $order_data["quantity"];
+        else
+            echo 0;
+    }
 
     // send back data as JSON
     // $new_quantity = $_POST["quantity"] + 1;
