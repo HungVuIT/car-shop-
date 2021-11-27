@@ -48,6 +48,9 @@ CREATE TABLE `Car` (
     `price` int(11) NOT NULL,
     `warranty` int(2),                  -- years
     `description` varchar(2048),
+    `car_img1` varchar(255),
+    `car_img2` varchar(255),
+    `car_img3` varchar(255),
     PRIMARY KEY (`id`)
 );
 
@@ -82,12 +85,12 @@ CREATE TABLE `Order` (
 );
 
 
-CREATE TABLE `CarImg` (
-    `car_id` int(11) UNSIGNED NOT NULL,
-    `car_img_path` varchar(255) NOT NULL UNIQUE,
-    FOREIGN KEY (`car_id`) REFERENCES `Car`(`id`),
-    PRIMARY KEY (`car_img_path`)
-);
+-- CREATE TABLE `CarImg` (
+--     `car_id` int(11) UNSIGNED NOT NULL,
+--     `car_img_path` varchar(255) NOT NULL UNIQUE,
+--     FOREIGN KEY (`car_id`) REFERENCES `Car`(`id`),
+--     PRIMARY KEY (`car_img_path`)
+-- );
 
 CREATE TABLE `CarReview` (
     `user_id` int(11) UNSIGNED NOT NULL,
@@ -207,4 +210,4 @@ ALTER TABLE `tblposts`
 --
 ALTER TABLE `tblsubcategory`
   MODIFY `SubCategoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-COMMIT;
+-- COMMIT;
