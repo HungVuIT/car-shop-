@@ -25,7 +25,10 @@ INSERT INTO `Car`(`name`, `brand`, `year`, `seats`, `color`, `transmission`, `en
 	('Car 09', 'FER', 2003, 4, 'Black'	, 'manual'	, 2.4, 225000, 3    , 'Lorem ipsum'),
 	('Car 10', 'BMW', 2012, 4, 'Green'	, 'auto'	, 1.4, 252000, 3    , 'Lorem ipsum'),
 	('Car 11', 'FER', 2018, 2, 'Purple'	, 'manual'	, 2.8, 321000, 5    , 'Lorem ipsum'),
-	('Car 12', 'BMW', 2020, 4, 'White'	, 'auto'	, 2.2, 129000, 2    , 'Lorem ipsum')
+	('Car 12', 'BMW', 2020, 4, 'White'	, 'auto'	, 2.2, 129000, 2    , 'Lorem ipsum'),
+	('Mec 01', 'Mec', 2020, 4, 'Gray'	, 'auto'	, 2.4, 200000, 2    , 'Lorem ipsum'),
+	('BMW 01', 'BMW', 2021, 4, 'Black'	, 'auto'	, 2.6, 194000, 4    , 'Lorem ipsum'),
+	('Lam 01', 'Lam', 2019, 4, 'White'	, 'auto'	, 2.8, 320000, 5    , 'Lorem ipsum')
 ;
 
 
