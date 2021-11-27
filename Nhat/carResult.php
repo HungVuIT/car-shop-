@@ -1,5 +1,5 @@
 <?php
-require "./src/php/DBconnect.php";
+require "./db/db_connect.php";
 $con = connect();
 
 # Pagination
@@ -13,6 +13,7 @@ if (isset($_GET["page"])) {
 // Prev + Next
 $prev = $page - 1;
 $next = $page + 1;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +25,12 @@ $next = $page + 1;
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- My CSS-->
-  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="stylesheet" href="./css/car_list.css">
   <!-- Fontawesome -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="./src/js/liveSearch.js"></script>
+  <script src="./js/liveSearch.js"></script>
+  <script src="./js/validateCarSearch.js"></script>
   <style>
     /* CSS navbar */
     .navbar {
@@ -146,50 +148,82 @@ $next = $page + 1;
 
     <!--Search bar-->
     <div class="row search-row mb-3">
-      <div class="search-box">
+      <form class="search-box">
         <div class="input-group ">
-          <div id="search-autocomplete" class="form-outline">
-            <input type="text" id="search-keyword" class="form-control" />
+          <div class="form-outline">
+            <input type="text" id="search-keyword" autocomplete="off" required class="form-control" />
             <div class="result"></div>
 
           </div>
           <div class="input-group-append">
-            <a id="search-btn" class="btn my-btn btn-primary" onclick="this.href='searchResult.php?keyword='+document.getElementById('search-keyword').value">
+            <a id="search-btn" class="btn my-btn btn-primary" onclick="validateCarSearch()">
               <i class="fas fa-search"></i>
             </a>
           </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <!-- List cards -->
-    <div class="row">
+    <div class="row justify-content-center">
       <?php
-      $from = ($page - 1) * $result_per_page;
-      if ($from < 0) $from = 0;
+      if ($page > 0) {
+        $from = ($page - 1) * $result_per_page;
+        if ($from < 0) $from = 0;
 
-      $query = "SELECT * FROM car LIMIT $from, $result_per_page";
-      $result = mysqli_query($con, $query);
+        $stmt = mysqli_prepare($con, "SELECT * FROM car WHERE name LIKE ? ORDER BY id DESC LIMIT $from, $result_per_page");
+        mysqli_stmt_bind_param($stmt, "s", $param_term);
+        $param_term = '%' . $_GET["keyword"] . '%';
+        
+        if (mysqli_stmt_execute($stmt)) {
+          $result = mysqli_stmt_get_result($stmt);
+        }
+        // Wrong keyword input => No result alert
+        if (mysqli_num_rows($result) == 0 || $_GET["keyword"] == "") {
+          echo '<div class="alert alert-info" role="alert">
+                No results were returned in keyword search: <strong>' . $_GET["keyword"] . ' </strong></br>
+                Or page <strong>' . $page . '</strong> does not exist.</br>
+                <ul>
+                  <li>Please check your keywords.</li>
+                  <li>Keywords should be short and relevant to the product.</li>
+                  <li>Please check the page number.</li>
+                  <li>Page numbers must be between 1 and total of pages</li>
+                </ul>
+              </div>';
+        }
 
-      while ($cars = mysqli_fetch_array($result)) { ?>
+        while ($cars = mysqli_fetch_array($result)) {
+          echo '
+          <div class="col-md-3 col-xs-6">
+            <div class="card h-100 shadow-sm">
+              <img src="./img/2019-honda-civic-sedan-1558453497.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <div class="car-name">' . $cars["name"] . '</div>
+                <div class="car-price">' . number_format($cars["price"], 0, '', ',') . '</div>
 
-        <div class="col-md-3 col-xs-6">
-          <div class="card h-100 shadow-sm">
-            <img src="./src/img/2019-honda-civic-sedan-1558453497.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="car-name"><?php echo $cars["name"] ?></div>
-              <div class="car-price"><?php echo number_format($cars["price"], 0, '', ',') ?> $</div>
-
-              <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
-              <div class="text-center"> <a href="#" class="btn my-btn btn-primary">View Detail</a> </div>
+                <h5 class="card-title">' . $cars["description"] . '</h5>
+                <div class="text-center">
+                  <a href="car.php?car_id=' . $cars["id"] . '" class="btn my-btn btn-primary">View Detail</a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-      <?php } ?>
+          </div>';
+        }
+      } ?>
 
     </div>
+
     <!-- Pagination by DB -->
+    <?php
+    $stmt = mysqli_prepare($con, "SELECT id FROM car WHERE name LIKE ?");
+    mysqli_stmt_bind_param($stmt, "s", $param_term);
+    $param_term = '%' . $_GET["keyword"] . '%';
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $total_row = mysqli_num_rows($result);
+    $total_page = ceil($total_row / $result_per_page);
+    ?>
+
     <ul class="pagination justify-content-center">
       <li class="page-item <?php if ($page <= 1) {
                               echo 'disabled';
@@ -197,21 +231,16 @@ $next = $page + 1;
         <a class="page-link" href="<?php if ($page <= 1) {
                                       echo '#';
                                     } else {
-                                      echo "?page=" . $prev;
+                                      echo "?page=" . $prev . "&keyword=" . $_GET["keyword"];
                                     } ?>">Previous
         </a>
       </li>
 
-      <?php
-      $result = mysqli_query($con, "SELECT id FROM car");
-      $total_row = mysqli_num_rows($result);
-      $total_page = ceil($total_row / $result_per_page);
-      for ($i = 1; $i <= $total_page; $i++) :
-      ?>
+      <?php for ($i = 1; $i <= $total_page; $i++) : ?>
         <li class="page-item <?php if ($page == $i) {
                                 echo 'active';
                               } ?>">
-          <a class="page-link" href="<?php echo "?page=" .$i; ?>"> <?= $i; ?> </a>
+          <a class="page-link" href="<?php echo "?page=" . $i . "&keyword=" . $_GET["keyword"]; ?>"> <?= $i; ?> </a>
         </li>
       <?php endfor; ?>
 
@@ -221,7 +250,7 @@ $next = $page + 1;
         <a class="page-link" href="<?php if ($page >= $total_page) {
                                       echo '#';
                                     } else {
-                                      echo "?page=" . $next;
+                                      echo "?page=" . $next . "&keyword=" . $_GET["keyword"];
                                     } ?>">Next
         </a>
       </li>
@@ -229,7 +258,7 @@ $next = $page + 1;
     </ul>
 
   </div>
-
+  <?php mysqli_close($con) ?>
 </body>
 
 </html>

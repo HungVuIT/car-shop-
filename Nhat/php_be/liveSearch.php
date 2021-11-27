@@ -1,9 +1,9 @@
 <?php
-require("DBconnect.php");
+require  dirname(dirname(__FILE__)) . ("/db/db_connect.php");
 $con = connect();
 if (isset($_REQUEST["term"])) {
     // Prepare a select statement
-    $sql = "SELECT * FROM car WHERE name LIKE ?";
+    $sql = "SELECT * FROM car WHERE name LIKE ? ORDER BY id DESC";
 
     if ($stmt = mysqli_prepare($con, $sql)) {
         // Bind string variables to the prepared statement as parameters
@@ -33,3 +33,4 @@ if (isset($_REQUEST["term"])) {
 }
 
 mysqli_close($con);
+?>
