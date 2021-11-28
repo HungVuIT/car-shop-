@@ -41,7 +41,7 @@ INSERT INTO `Order`(`user_id`,`car_id`,`quantity`) VALUES
 
 -- About us
 
-INSERT INTO `aboutUs`(`id`,`address`,`email`,`phone`, `description`, `value`) VALUES 
+INSERT INTO `about`(`id`,`address`,`email`,`phone`, `description`, `value`) VALUES 
 (1,'316 Nguyễn Tất Thành', 'luxuryCar@gmail.com','11212547','content1', 'content2');
 
 
