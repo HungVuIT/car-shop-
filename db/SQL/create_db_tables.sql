@@ -54,6 +54,16 @@ CREATE TABLE `Car` (
     PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `aboutUs` (
+  `id` int(11) NOT NULL,
+`address` varchar(200) DEFAULT NULL,
+`email` varchar(200) DEFAULT NULL,
+`phone` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+   `value` varchar(200) DEFAULT NULL
+);
+
+
 
 CREATE TABLE `tblposts` (
   `id` int(11) NOT NULL,
