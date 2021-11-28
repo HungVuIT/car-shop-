@@ -180,12 +180,16 @@ $next = $page + 1;
           echo '
           <div class="col-md-3 col-xs-6">
             <div class="card h-100 shadow-sm">
-              <img src="./img/2019-honda-civic-sedan-1558453497.jpg" class="card-img-top" alt="...">
+              <img src="./'.$cars["car_img1"].'" class="card-img-top" alt="...">
               <div class="card-body">
                 <div class="car-name">' . $cars["name"] . '</div>
-                <div class="car-price">' . number_format($cars["price"], 0, '', ',') . '</div>
+                <div class="car-price">' . number_format($cars["price"], 0, '', ',') . ' $</div>
 
-                <h5 class="card-title">' . $cars["description"] . '</h5>
+                <h6> <strong>Color: </strong>' . $cars["color"] .'</h6>
+                <h6> <strong>Number of seats: </strong>' . $cars["seats"] .'</h6>
+                <h6> <strong>Transmission: </strong>' . $cars["transmission"] .'</h6>
+                <h5>' . $cars["description"] .'</h5>
+
                 <div class="text-center">
                   <a href="car.php?car_id=' . $cars["id"] . '" class="btn my-btn btn-primary">View Detail</a>
                 </div>

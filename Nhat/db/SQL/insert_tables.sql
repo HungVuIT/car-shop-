@@ -1,5 +1,6 @@
 -- Insert Admin, User
 
+
 INSERT INTO `tbladmin` (`id`, `AdminUserName`, `AdminPassword`, `AdminEmailId`, `userType`, `CreationDate`, `UpdationDate`) VALUES
 (1, 'admin', 'f925916e2754e5e03f75dd58a5733251', 'phpgurukulofficial@gmail.com', 1, '2021-05-26 18:30:00', '2021-11-11 16:23:15'),
 (3, 'subadmin', 'f925916e2754e5e03f75dd58a5733251', 'sudamin@gmail.in', 0, '2021-11-10 18:28:11', NULL),
@@ -13,22 +14,22 @@ INSERT INTO `User`(`name`, `password`, `email`) VALUES
 ;
 
 
-INSERT INTO `Car`(`name`, `brand`, `year`, `seats`, `color`, `transmission`, `engine`, `price`, `warranty`, `description`) VALUES
-	('Car 01', 'BMW', 2010, 4, 'Red'	, 'manual'	, 2.0, 125000, 4    , 'Lorem ipsum'),
-	('Car 02', 'MEC', 2014, 6, 'Yellow'	, 'auto'	, 1.8, 224000, 6    , 'Lorem ipsum'),
-	('Car 03', 'FER', 2005, 4, 'Blue'	, 'manual'	, 1.6, 126000, 1    , 'Lorem ipsum'),
-	('Car 04', 'CCX', 2012, 8, 'White'	, 'manual'	, 2.2, 152000, NULL , 'Lorem ipsum'),
-	('Car 05', 'ASX', 2008, 4, 'Black'	, 'auto'	, 2.4, 141000, 4    , 'Lorem ipsum'),
-	('Car 06', 'BMW', 2012, 6, 'Grey'	, 'auto'	, 3.0, 162000, 5    , 'Lorem ipsum'),
-	('Car 07', 'MEC', 2011, 4, 'Red'	, 'manual'	, 1.6, 155000, 2    , 'Lorem ipsum'),
-	('Car 08', 'FER', 2019, 8, 'Grey'	, 'auto'	, 2.6, 215000, 7    , 'Lorem ipsum'),
-	('Car 09', 'FER', 2003, 4, 'Black'	, 'manual'	, 2.4, 225000, 3    , 'Lorem ipsum'),
-	('Car 10', 'BMW', 2012, 4, 'Green'	, 'auto'	, 1.4, 252000, 3    , 'Lorem ipsum'),
-	('Car 11', 'FER', 2018, 2, 'Purple'	, 'manual'	, 2.8, 321000, 5    , 'Lorem ipsum'),
-	('Car 12', 'BMW', 2020, 4, 'White'	, 'auto'	, 2.2, 129000, 2    , 'Lorem ipsum'),
-	('Mec 01', 'Mec', 2020, 4, 'Gray'	, 'auto'	, 2.4, 200000, 2    , 'Lorem ipsum'),
-	('BMW 01', 'BMW', 2021, 4, 'Black'	, 'auto'	, 2.6, 194000, 4    , 'Lorem ipsum'),
-	('Lam 01', 'Lam', 2019, 4, 'White'	, 'auto'	, 2.8, 320000, 5    , 'Lorem ipsum')
+INSERT INTO `Car`(`name`, `brand`, `year`, `seats`, `color`, `transmission`, `engine`, `price`, `warranty`, `description`, `car_img1`, `car_img2`, `car_img3`) VALUES
+	('Citroen C1'       , 'Citroen'     , 2014, 4, 'Blue'	, 'auto'	, 2.0, 162000, 5    , 'Lorem ipsum', 'img/car/Citroen_C1_2014.jpg'    , 'img/car/Citroen_C1_2014.jpg'    , 'img/car/Citroen_C1_2014.jpg'    ),
+	('Citroen C3'       , 'Citroen'     , 2016, 4, 'Red'	, 'auto'	, 2.6, 215000, 7    , 'Lorem ipsum', 'img/car/Citroen_C3.jpg'         , 'img/car/Citroen_C3.jpg'         , 'img/car/Citroen_C3.jpg'         ),
+	('Ford Fiesta'      , 'Ford'        , 2018, 4, 'Red'	, 'manual'	, 2.4, 225000, 3    , 'Lorem ipsum', 'img/car/Ford_Fiesta.jpg'        , 'img/car/Ford_Fiesta.jpg'        , 'img/car/Ford_Fiesta.jpg'        ),
+	('Nissan Micra W'   , 'Nissan'      , 2014, 4, 'White'	, 'auto'	, 1.4, 252000, 3    , 'Lorem ipsum', 'img/car/Nissan_Micra.jpg'       , 'img/car/Nissan_Micra.jpg'       , 'img/car/Nissan_Micra.jpg'       ),
+	('Nissan Micra B'   , 'Nissan'      , 2014, 4, 'Blue'	, 'manual'	, 2.2, 321000, 5    , 'Lorem ipsum', 'img/car/Nissan_Micra_2014.jpg'  , 'img/car/Nissan_Micra_2014.jpg'  , 'img/car/Nissan_Micra_2014.jpg'  ),
+	('Peugeot 108'      , 'Peugeot'     , 2014, 4, 'Purple'	, 'auto'	, 2.2, 129000, 2    , 'Lorem ipsum', 'img/car/Peugeot_108.jpg'        , 'img/car/Peugeot_108.jpg'        , 'img/car/Peugeot_108.jpg'        ),
+	('Renault Twingo'   , 'Renault'     , 2008, 4, 'Blue'	, 'manual'	, 2.0, 125000, 4    , 'Lorem ipsum', 'img/car/Renault_Twingo.jpg'     , 'img/car/Renault_Twingo.jpg'     , 'img/car/Renault_Twingo.jpg'     ),
+	('SEAT Ibiza'       , 'SEAT'        , 2016, 4, 'Red'	, 'auto'	, 2.0, 320000, 5    , 'Lorem ipsum', 'img/car/SEAT_Ibiza.jpg'         , 'img/car/SEAT_Ibiza.jpg'         , 'img/car/SEAT_Ibiza.jpg'         ),
+	('Skoda Citigo'     , 'Skoda'       , 2010, 4, 'Red'	, 'auto'	, 1.8, 224000, 6    , 'Lorem ipsum', 'img/car/Skoda_Citigo.jpg'       , 'img/car/Skoda_Citigo.jpg'       , 'img/car/Skoda_Citigo.jpg'       ),
+	('Smart Forfour'    , 'Smart'       , 2017, 4, 'Grey'	, 'manual'	, 1.6, 126000, 1    , 'Lorem ipsum', 'img/car/Smart_Forfour_2017.jpg' , 'img/car/Smart_Forfour_2017.jpg' , 'img/car/Smart_Forfour_2017.jpg' ),
+	('Suzuki Celerio'   , 'Suzuki'      , 2016, 4, 'White'	, 'auto'	, 2.6, 194000, 4    , 'Lorem ipsum', 'img/car/Suzuki_Celerio.jpg'     , 'img/car/Suzuki_Celerio.jpg'     , 'img/car/Suzuki_Celerio.jpg'     ),
+	('Toyota Aygo'      , 'Toyota'      , 2012, 4, 'Red'	, 'manual'	, 1.6, 155000, 2    , 'Lorem ipsum', 'img/car/Toyota_Aygo.jpg'        , 'img/car/Toyota_Aygo.jpg'        , 'img/car/Toyota_Aygo.jpg'        ),
+	('Vauxhall Corsa'   , 'Vauxhall'    , 2016, 4, 'Purple'	, 'auto'	, 2.0, 200000, 2    , 'Lorem ipsum', 'img/car/Vauxhall_Corsa_2016.jpg', 'img/car/Vauxhall_Corsa_2016.jpg', 'img/car/Vauxhall_Corsa_2016.jpg'),
+	('Volkswagen Up'    , 'Volkswagen'  , 2016, 4, 'Black'	, 'manual'	, 2.2, 152000, NULL , 'Lorem ipsum', 'img/car/Volkswagen_Up.jpg'      , 'img/car/Volkswagen_Up.jpg'      , 'img/car/Volkswagen_Up.jpg'      ),
+	('Volvo XC90'       , 'Volvo'       , 2020, 7, 'Black'	, 'auto'	, 2.8, 341000, 4    , 'Lorem ipsum', 'img/car/Volvo_XC90.jpg'         , 'img/car/Volvo_XC90.jpg'         , 'img/car/Volvo_XC90.jpg'         )
 ;
 
 
@@ -37,6 +38,11 @@ INSERT INTO `Order`(`user_id`,`car_id`,`quantity`) VALUES
     (2  , 2  , 1),
     (3  , 10 , 5)
 ;
+
+-- About us
+
+INSERT INTO `about`(`id`,`address`,`email`,`phone`, `description`, `value`) VALUES 
+(1,'316 Nguyễn Tất Thành', 'luxuryCar@gmail.com','11212547','content1', 'content2');
 
 
 -- News
