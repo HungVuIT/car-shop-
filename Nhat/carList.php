@@ -29,7 +29,6 @@ $next = $page + 1;
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="./js/liveSearch.js"></script>
-  <script src="./js/validateCarSearch.js"></script>
   <style>
     /* CSS navbar */
     .navbar {
@@ -115,7 +114,7 @@ $next = $page + 1;
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Product list</a>
+          <a class="nav-link" href="carList.php">Product list</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">News</a>
@@ -123,21 +122,6 @@ $next = $page + 1;
         <li class="nav-item">
           <a class="nav-link" href="#">About us</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </ul>
       <a href="#" class="button" id="in">Sign in</a>
       <a href="#" class="button" id="up">Sign up</a>
@@ -147,10 +131,10 @@ $next = $page + 1;
 
     <!--Search bar-->
     <div class="row search-row mb-3">
-      <form class="search-box">
+      <div class="search-box">
         <div class="input-group ">
           <div class="form-outline">
-            <input type="text" id="search-keyword" autocomplete="off" required class="form-control" />
+            <input type="text" id="search-keyword" autocomplete="off" class="form-control" />
             <div class="result"></div>
 
           </div>
@@ -160,7 +144,7 @@ $next = $page + 1;
             </a>
           </div>
         </div>
-      </form>
+      </div>
     </div>
 
     <!-- List cards -->

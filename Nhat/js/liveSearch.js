@@ -1,11 +1,10 @@
-$("#search-keyword").keyup(function(event) {
-    if (event.keyCode === 13) {
-        $("#search-btn").click();
-    }
-});
-
 $(document).ready(function(){
-    $('.search-box input[type="text"]').on("keyup input", function(){
+    $('.search-box input[type="text"]').on("keyup input", function(event){
+
+        if (event.key === 'Enter') {
+            validateCarSearch();
+        }
+
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if(inputVal.length){
@@ -26,3 +25,9 @@ $(document).ready(function(){
     });
 });
 
+function validateCarSearch() {
+    var result = document.getElementById("search-keyword").value;
+    if(result.length > 0){
+        window.location.href='carResult.php?keyword='+ result;
+    }
+}

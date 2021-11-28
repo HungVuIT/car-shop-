@@ -4,24 +4,19 @@
 
 .card {
     background: #fff;
+    /* box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color]; */
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
-    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    transition: transform .5s;
     border: 0;
     border-radius: 1rem
-}
-
-.card-img,
-.card-img-top {
-    border-top-left-radius: calc(1rem - 1px);
-    border-top-right-radius: calc(1rem - 1px)
 }
 
 .card-img-top {
     width: 100%;
     max-height: 180px;
-    object-fit: contain;
     padding: 30px
 }
+
 .card h5 {
     overflow: hidden;
     height: 56px;
@@ -83,27 +78,23 @@
     background:  #fff !important;
 }
 
-.search-box input[type="text"], .result{
-    width: 100%;
-    box-sizing: border-box;
-}
-
 .result{
+    width: 100%;
     position: absolute;        
     z-index: 999;
     top: 100%;
     left: 0;
 }
 
-/* Formatting result items */
 .result p{
     background-color: #fff;
     margin: 0;
-    padding: 7px 10px;
+    padding: 10px 10px;
     border: 1px solid #CCCCCC;
     border-top: none;
     cursor: pointer;
 }
 .result p:hover{
-    background: #f2f2f2;
+    background: rgb(96, 181, 202);
+    color:#fff;
 }
