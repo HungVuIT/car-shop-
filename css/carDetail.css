@@ -1,9 +1,5 @@
 /* Main page */
 
-body {
-    background-color: rgb(230, 230, 230);   /* TODO: change BG color based on car's color */
-}
-
 @media (min-width: 576px) {
     .carPage { width: 96%; }
 }
@@ -15,8 +11,6 @@ table * { text-align: center; }
 
 
 /* Reviews */
-
-/* #sessUserReview { width: 66%; } */
 
 .rvUserPhoto {
     height: 6em;
@@ -33,4 +27,8 @@ table * { text-align: center; }
     margin-top: 1.25em;
     font-size: 0.8em;
     color: gray;
+}
+
+.carousel-inner {
+    height: 100% !important;
 }

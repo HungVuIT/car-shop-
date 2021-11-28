@@ -1,5 +1,5 @@
 <?php
-    require $_SERVER["DOCUMENT_ROOT"] . "/lapTrinhWeb/db/db_connect.php";
+    require "../db/db_connect.php";
     $conn = connect();
 
     // echo "PHP received: (
@@ -50,8 +50,6 @@
         }
     }
     
-
-
     $result = mysqli_query($conn, $query);
 
     if (!$result) {

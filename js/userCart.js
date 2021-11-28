@@ -47,6 +47,7 @@ $(document).ready(function() {
 
 // On incr/decr click
 $(".carQntyBtn").click(function() {
+
     var carItem = $(this).closest("tr");
 
     var carQntyDiv = carItem.find(".carQnty");

@@ -1,5 +1,5 @@
 <?php 
-    require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+    require "../db/db_connect.php";
     $conn = connect();
     
     date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -10,7 +10,7 @@
     $review      = $_POST['review'];
     $date_posted = date("Y-m-d H:i:s");
     $date_formatted = date("H:i, j/m/Y");
-    
+
 
     $query = "INSERT INTO `CarReview`(`user_id`, `car_id`, `review`, `date_posted`) 
                 VALUES ({$user_id}, {$car_id}, '{$review}', '{$date_posted}')";
@@ -36,7 +36,7 @@
     }
     
     $userName = mysqli_fetch_assoc($result)["name"];
-    $userPfpPath = isset(mysqli_fetch_assoc($result)["img_path"])? mysqli_fetch_assoc($result)["img_path"] : "res/user.png";
+    $userPfpPath = isset(mysqli_fetch_assoc($result)["img_path"])? mysqli_fetch_assoc($result)["img_path"] : "img/Dang/user.png";
     // TODO: show users' profile pic, which has path $imgPath
 
 

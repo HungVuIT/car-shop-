@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require $_SERVER['DOCUMENT_ROOT'] . "/lapTrinhWeb/db/db_connect.php";
+    require "db/db_connect.php";
     $conn = connect();
 
 
@@ -33,16 +33,47 @@
     $car_data = mysqli_fetch_assoc($car_result);
 
     $car_name       = $car_data["name"];
+    $car_img1       = $car_data["car_img1"];
+    $car_img2       = $car_data["car_img2"];
+    $car_img3       = $car_data["car_img3"];
     $brand          = $car_data["brand"];
     $price          = (float) $car_data["price"];
     $year           = (int) $car_data["year"];
     $seats          = (int) $car_data["seats"];
-    $color          = $car_data["color"];
+    $color_name     = $car_data["color"];
     $transmission   = ucfirst($car_data["transmission"]);
     $engine         = (float) $car_data["engine"];
     $warranty       = (int) $car_data["warranty"];
     $description    = $car_data["description"];
 
+    $color;
+    switch($color_name) {
+        case "Red":
+            $color = "#ffe6e6";
+            break;
+        case "Yellow":
+            $color = "#fff9cc";
+            break;
+        case "Blue":
+            $color = "#e7e7ff";
+            break;
+        case "White":
+            $color = "#ffffff";
+            break;
+        case "Black":
+            $color = "#c9c9c9";
+            break;
+        case "Grey":
+            $color = "#dedede";
+            break;
+        case "Green":
+            $color = "#d9ffd9";
+            break;
+        case "Purple":
+            $color = "#f7d6ff";
+            break;
+    
+    }
 
     // ------- Get review list -------------------
     $query = "SELECT `CarReview`.*, `User`.`name`, `User`.`img_path` FROM 
@@ -64,24 +95,218 @@
 <html lang="en">
     
 <head>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <-- Bootstrap core CSS 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+
+
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery.js"></script>
 
-    <link href="css/car.css" rel="stylesheet">
-    <link rel="icon" href="res/icon.png">
+    <style>
+                .carousel-inner {
+            height: 650px;
+        }
+
+        #slide1 {
+            background-image: url(img1.jpg);
+            height: 650px;
+            width: 100%;
+            margin: auto;
+            background-size: 100% 100%;
+        }
+
+        #slide2 {
+            background-image: url(img2.jpg);
+            height: 650px;
+            width: 100%;
+            margin: auto;
+            background-size: 100% 100%;
+        }
+
+        #slide3 {
+            background-image: url(img3.jpg);
+            height: 650px;
+            width: 100%;
+            margin: auto;
+            background-size: 100% 100%;
+
+        }
+
+        #contact {
+            background-image: url(contact.png);
+            height: 500px;
+            width: 85%;
+            margin: auto;
+            background-size: 100% 100%;
+
+        }
+
+        #btn_contact {
+            margin-top: 320px;
+            margin-left: 100px;
+            width: 30%;
+            height: 50px;
+            float: inline-end;
+        }
+
+        /* CSS navbar */
+        .navbar {
+            height: 80px;
+        }
+
+        .navbar-default .navbar-nav>li.dropdown:hover>a,
+        .navbar-default .navbar-nav>li.dropdown:hover>a:hover,
+        .navbar-default .navbar-nav>li.dropdown:hover>a:focus {
+            background-color: rgb(231, 231, 231);
+            color: rgb(85, 85, 85);
+        }
+
+        li.dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+
+        /* CSS sign in sign out button */
+        .button {
+            margin-left:10px;
+            display: inline-block;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10rem;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.15rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+          }
+          .button:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(144, 202, 96);
+            border-radius: 10rem;
+            z-index: -2;
+          }
+          .button:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #b30068;
+            transition: all 0.3s;
+            border-radius: 10rem;
+            z-index: -1;
+          }
+          .button:hover {
+            color: #fff;
+          }
+          .button:hover:before {
+            width: 100%;
+          }
+          #up:after{
+            background-color: rgb(96, 181, 202);
+          }
+
+          /*-------------------------------------------------- */
+          .card-header{
+            color: #fff !important;
+            background-color: #e76427 !important;
+            padding: 10px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+          }
+    </style>
+
+
+
+    <link href="css/carDetail.css" rel="stylesheet">
+    <link rel="icon" href="img/Dang/icon.png">
     <title><?php echo $car_name ?> - Carworld</title>
+
 </head>
 
 
   
-<body data-sess-user-id="<?php echo $sess_user_id ?>"
+<body style="background-color: <?php echo $color ?>"
+      data-sess-user-id="<?php echo $sess_user_id ?>"
       data-car-id ="<?php echo $car_id  ?>">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            CAR SHOP
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Product list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </ul>
+            <a href="#" class="button" id="in">Sign in</a>
+            <a href="#" class="button" id="up">Sign up</a>
+        </div>
+    </nav>
+
+    <div class="mb-5 pb-4"></div>
+
 
     <!-- Car page -->
     <div class="container-fluid carPage">
@@ -96,13 +321,13 @@
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="res/car1.jpg" alt="First slide">
+                        <img class="d-block w-100" src="<?php echo $car_img1 ?>" alt="Image #1">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="res/car1.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="<?php echo $car_img2 ?>" alt="Image #2">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="res/car1.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="<?php echo $car_img3 ?>" alt="Image #3">
                     </div>
                 </div>
 
@@ -130,7 +355,7 @@
                     echo "$" . number_format($price, 2) 
                 ?></h3>
 
-                <form id="addCartForm" action="php/order_quantity.php">
+                <form id="addCartForm" action="php_be/order_quantity.php">
                     <button class="btn btn-primary my-4">Add to cart</button>
                 </form>
 
@@ -158,7 +383,7 @@
                     <tr>
                         <th>Color</th>
                         <td id="carColor"><?php 
-                            echo $color
+                            echo $color_name
                         ?></td>
                     </tr>
                     <tr>
@@ -182,7 +407,7 @@
                     <tr>
                         <th>Warranty</th>
                         <td id="carWarranty"><?php 
-                            echo $warranty . " years" 
+                            echo $warranty? $warranty . " years" : "None";
                         ?></td>
                     </tr>
                 </table>
@@ -196,7 +421,7 @@
                     <h2>Customer Reviews</h2>
                 </div>
 
-                <form id="newReview" action="php/add_review.php" 
+                <form id="newReview" action="php_be/add_review.php" 
                     <?php echo (!isset($_SESSION["id"]))? "class=\"d-none\"" : "" ?>>
 
                     <div class="row justify-content-sm-center justify-content-md-start">
@@ -217,7 +442,7 @@
                             $userName = $review["name"];
                             $user_id = $review["user_id"];
                             //$userPfpPath = $review["img_path"];   // TODO:
-                            $userPfpPath = "res/user.png";
+                            $userPfpPath = "img/Dang/user.png";
                             $reviewText = $review["review"];
 
                             $date_posted = $review["date_posted"];
@@ -287,7 +512,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-    <script src="js/car.js"></script>
+    <script src="js/carDetail.js"></script>
   
 
 </body>
