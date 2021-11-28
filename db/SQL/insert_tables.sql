@@ -1,5 +1,6 @@
 -- Insert Admin, User
 
+
 INSERT INTO `tbladmin` (`id`, `AdminUserName`, `AdminPassword`, `AdminEmailId`, `userType`, `CreationDate`, `UpdationDate`) VALUES
 (1, 'admin', 'f925916e2754e5e03f75dd58a5733251', 'phpgurukulofficial@gmail.com', 1, '2021-05-26 18:30:00', '2021-11-11 16:23:15'),
 (3, 'subadmin', 'f925916e2754e5e03f75dd58a5733251', 'sudamin@gmail.in', 0, '2021-11-10 18:28:11', NULL),
@@ -37,6 +38,11 @@ INSERT INTO `Order`(`user_id`,`car_id`,`quantity`) VALUES
     (2  , 2  , 1),
     (3  , 10 , 5)
 ;
+
+-- About us
+
+INSERT INTO `aboutUs`(`id`,`address`,`email`,`phone`, `description`, `value`) VALUES (1,`316 Nguyễn Tất Thành`, `luxuryCar@gmail.com`,`11212546`,'content1', 'content2');
+
 
 -- News
 
