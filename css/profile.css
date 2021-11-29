@@ -1542,7 +1542,6 @@ section {
     top: 0;
     bottom: 0;
     background: black;
-    overflow-y: auto;
 }
 
 .menu-sidebar .logo {
@@ -1586,6 +1585,7 @@ section {
 .navbar-sidebar {
     padding: 35px;
     padding-bottom: 0;
+    margin-top: 25px;
 }
 
 .navbar-sidebar .navbar__list li a {
