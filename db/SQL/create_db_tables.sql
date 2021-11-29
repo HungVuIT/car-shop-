@@ -31,7 +31,7 @@ CREATE TABLE `User` (
     `email` varchar(255) NOT NULL,
     `phone` varchar(15),
     `birthday` DATE,
-    `img_path` varchar(255) NOT NULL DEFAULT "img/user/default_avatar.png",   -- TODO: move folder to root instead
+    `img_path` varchar(255),
     PRIMARY KEY (`id`)
 );
 
@@ -142,7 +142,7 @@ CREATE TABLE `tblcomments` (
   `email` varchar(150) DEFAULT NULL,
   `comment` mediumtext DEFAULT NULL,
   `postingDate` timestamp NULL DEFAULT current_timestamp(),
-  `status` int(1) DEFAULT NULL
+  `img_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
