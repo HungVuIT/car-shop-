@@ -30,7 +30,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles -->
-  <link href="css/new.css" rel="stylesheet">
+  <link href="css/news.css" rel="stylesheet">
 </head>
 
 <body>
