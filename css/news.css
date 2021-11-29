@@ -8,6 +8,15 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+  display: contents;
+}
+
+ul {
+  padding-left: 17px;
+}
+
 .carousel-item {
   height: 65vh;
   min-height: 300px;
