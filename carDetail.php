@@ -70,7 +70,7 @@
             $color = "#d9ffd9";
             break;
         case "Purple":
-            $color = "#f7d6ff";
+            $color = "#e9d3f0";
             break;
     
     }
@@ -125,52 +125,6 @@
     <script type="text/javascript" src="//code.jquery.com/jquery.js"></script>
 
     <style>
-                .carousel-inner {
-            height: 650px;
-        }
-
-        #slide1 {
-            background-image: url(img1.jpg);
-            height: 650px;
-            width: 100%;
-            margin: auto;
-            background-size: 100% 100%;
-        }
-
-        #slide2 {
-            background-image: url(img2.jpg);
-            height: 650px;
-            width: 100%;
-            margin: auto;
-            background-size: 100% 100%;
-        }
-
-        #slide3 {
-            background-image: url(img3.jpg);
-            height: 650px;
-            width: 100%;
-            margin: auto;
-            background-size: 100% 100%;
-
-        }
-
-        #contact {
-            background-image: url(contact.png);
-            height: 500px;
-            width: 85%;
-            margin: auto;
-            background-size: 100% 100%;
-
-        }
-
-        #btn_contact {
-            margin-top: 320px;
-            margin-left: 100px;
-            width: 30%;
-            height: 50px;
-            float: inline-end;
-        }
-
         /* CSS navbar */
         .navbar {
             height: 80px;
@@ -235,23 +189,12 @@
             background-color: rgb(96, 181, 202);
           }
 
-          /*-------------------------------------------------- */
-          .card-header{
-            color: #fff !important;
-            background-color: #e76427 !important;
-            padding: 10px;
-            border-bottom: 1px solid transparent;
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-          }
     </style>
 
 
 
     <link href="css/carDetail.css" rel="stylesheet">
-    <link rel="icon" href="img/Dang/icon.png">
+    <link rel="icon" href="img/icon.png">
     <title><?php echo $car_name ?> - Carworld</title>
 
 </head>
@@ -283,22 +226,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">About us</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+
             </ul>
             <a href="#" class="button" id="in">Sign in</a>
             <a href="#" class="button" id="up">Sign up</a>
@@ -441,8 +369,8 @@
 
                             $userName = $review["name"];
                             $user_id = $review["user_id"];
-                            //$userPfpPath = $review["img_path"];   // TODO:
-                            $userPfpPath = "img/Dang/user.png";
+                            $userPfpPath = $review["img_path"];   // TODO:
+                            //$userPfpPath = "img/Dang/user.png";
                             $reviewText = $review["review"];
 
                             $date_posted = $review["date_posted"];

@@ -1,5 +1,5 @@
 <?php 
-    include_once("php/validate_profile.php");
+    include_once("php_be/validate_profile.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +22,10 @@
 	<title>Carworld - Account</title>
 
     <!-- Logo -->
-    <link rel = "icon" href = "img/favicon.png" type = "image/x-icon">
+    <link rel = "icon" href = "img/logo.png" type = "image/x-icon">
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet">
+    <!-- <link href="css/font-face.css" rel="stylesheet"> -->
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -33,7 +33,7 @@
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-    <!-- Vendor CSS-->
+    <!-- vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
@@ -115,7 +115,7 @@
                                             <?php if (empty($row['img_path'])) : ?>
                                                 <img src="img/user/default_avatar.png" alt="<?=$row['name'];?>"/>
                                             <?php else : ?>
-                                                <img src="<?php echo 'img/user' . $row['img_path'] ?>" alt="avatar">
+                                                <img src="<?php echo $row['img_path'] ?>" alt="avatar">
                                             <?php endif; ?>    
                                         </div>    
 
@@ -130,7 +130,7 @@
                                                         <?php if (empty($row['img_path'])) : ?>
                                                             <img src="img/user/default_avatar.png" alt="<?=$row['name'];?>"/>
                                                         <?php else : ?>
-                                                            <img src="<?php echo 'img/user' . $row['img_path'] ?>" alt="avatar">
+                                                            <img src="<?php echo $row['img_path'] ?>" alt="avatar">
                                                         <?php endif; ?>
                                                     </a>
                                                 </div>
@@ -249,7 +249,7 @@
                                                     ?>
                                                     <img src="img/user/default_avatar.png" onClick="triggerClick()" id="profileDisplay">
                                                     <?php else : ?>
-                                                    <img src="<?php echo 'img/user' . $row['img_path'] ?>" alt="<?php echo $row['name']; ?>" onClick="triggerClick()" id="profileDisplay">
+                                                    <img src="<?php echo $row['img_path'] ?>" alt="<?php echo $row['name']; ?>" onClick="triggerClick()" id="profileDisplay">
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -312,17 +312,18 @@
     <!-- Bootstrap JS-->
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS -->
-    <script src="vendor/slick/slick.min.js"></script>
-    <script src="vendor/wow/wow.min.js"></script>
+
+    <!-- vendor JS -->
     <script src="vendor/animsition/animsition.min.js"></script>
     <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script> TODO:
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
     <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
     <script src="vendor/counter-up/jquery.counterup.min.js"></script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/slick/slick.min.js"></script>
+    <script src="vendor/wow/wow.min.js"></script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>

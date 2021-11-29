@@ -2,7 +2,8 @@
     ob_start();
     session_start();
     
-    require $_SERVER['DOCUMENT_ROOT'] . "/Hanh/db/db_connect.php";
+    require "db/db_connect.php";
+    $conn = connect();
 
     if(isset($_SESSION["id"])) {
         header("Location: profile.php");
@@ -16,6 +17,9 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
         $hash_password = md5($password);
+
+        echo "Input hash = " . $hash_password;
+        echo "\nDb hash = f925916e2754e5e03f75dd58a5733251";
 
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
             $error1 = true;

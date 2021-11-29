@@ -31,7 +31,7 @@ CREATE TABLE `User` (
     `email` varchar(255) NOT NULL,
     `phone` varchar(15),
     `birthday` DATE,
-    `img_path` varchar(255) NOT NULL DEFAULT "register+login+user_profile\\images\\icon\\default_avatar.png",   -- TODO: move folder to root instead
+    `img_path` varchar(255) NOT NULL DEFAULT "img/user/default_avatar.png",   -- TODO: move folder to root instead
     PRIMARY KEY (`id`)
 );
 

@@ -2,7 +2,8 @@
     ob_start();
     session_start();
 
-    require $_SERVER['DOCUMENT_ROOT'] . "/Hanh/db/db_connect.php";
+    
+    require "db/db_connect.php";
 
     if(isset($_SESSION['id'])) {
         header("Location: profile.php");

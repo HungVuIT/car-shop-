@@ -15,21 +15,21 @@ INSERT INTO `User`(`name`, `password`, `email`) VALUES
 
 
 INSERT INTO `Car`(`name`, `brand`, `year`, `seats`, `color`, `transmission`, `engine`, `price`, `warranty`, `description`, `car_img1`, `car_img2`, `car_img3`) VALUES
-	('Citroen C1'       , 'Citroen'     , 2014, 4, 'Blue'	, 'auto'	, 2.0, 162000, 5    , 'Lorem ipsum', 'image_car/Citroen_C1_2014.jpg'    , 'image_car/Citroen_C1_2014.jpg'    , 'image_car/Citroen_C1_2014.jpg'    ),
-	('Citroen C3'       , 'Citroen'     , 2016, 4, 'Red'	, 'auto'	, 2.6, 215000, 7    , 'Lorem ipsum', 'image_car/Citroen_C3.jpg'         , 'image_car/Citroen_C3.jpg'         , 'image_car/Citroen_C3.jpg'         ),
-	('Ford Fiesta'      , 'Ford'        , 2018, 4, 'Red'	, 'manual'	, 2.4, 225000, 3    , 'Lorem ipsum', 'image_car/Ford_Fiesta.jpg'        , 'image_car/Ford_Fiesta.jpg'        , 'image_car/Ford_Fiesta.jpg'        ),
-	('Nissan Micra W'   , 'Nissan'      , 2014, 4, 'White'	, 'auto'	, 1.4, 252000, 3    , 'Lorem ipsum', 'image_car/Nissan_Micra.jpg'       , 'image_car/Nissan_Micra.jpg'       , 'image_car/Nissan_Micra.jpg'       ),
-	('Nissan Micra B'   , 'Nissan'      , 2014, 4, 'Blue'	, 'manual'	, 2.2, 321000, 5    , 'Lorem ipsum', 'image_car/Nissan_Micra_2014.jpg'  , 'image_car/Nissan_Micra_2014.jpg'  , 'image_car/Nissan_Micra_2014.jpg'  ),
-	('Peugeot 108'      , 'Peugeot'     , 2014, 4, 'Purple'	, 'auto'	, 2.2, 129000, 2    , 'Lorem ipsum', 'image_car/Peugeot_108.jpg'        , 'image_car/Peugeot_108.jpg'        , 'image_car/Peugeot_108.jpg'        ),
-	('Renault Twingo'   , 'Renault'     , 2008, 4, 'Blue'	, 'manual'	, 2.0, 125000, 4    , 'Lorem ipsum', 'image_car/Renault_Twingo.jpg'     , 'image_car/Renault_Twingo.jpg'     , 'image_car/Renault_Twingo.jpg'     ),
-	('SEAT Ibiza'       , 'SEAT'        , 2016, 4, 'Red'	, 'auto'	, 2.0, 320000, 5    , 'Lorem ipsum', 'image_car/SEAT_Ibiza.jpg'         , 'image_car/SEAT_Ibiza.jpg'         , 'image_car/SEAT_Ibiza.jpg'         ),
-	('Skoda Citigo'     , 'Skoda'       , 2010, 4, 'Red'	, 'auto'	, 1.8, 224000, 6    , 'Lorem ipsum', 'image_car/Skoda_Citigo.jpg'       , 'image_car/Skoda_Citigo.jpg'       , 'image_car/Skoda_Citigo.jpg'       ),
-	('Smart Forfour'    , 'Smart'       , 2017, 4, 'Grey'	, 'manual'	, 1.6, 126000, 1    , 'Lorem ipsum', 'image_car/Smart_Forfour_2017.jpg' , 'image_car/Smart_Forfour_2017.jpg' , 'image_car/Smart_Forfour_2017.jpg' ),
-	('Suzuki Celerio'   , 'Suzuki'      , 2016, 4, 'White'	, 'auto'	, 2.6, 194000, 4    , 'Lorem ipsum', 'image_car/Suzuki_Celerio.jpg'     , 'image_car/Suzuki_Celerio.jpg'     , 'image_car/Suzuki_Celerio.jpg'     ),
-	('Toyota Aygo'      , 'Toyota'      , 2012, 4, 'Red'	, 'manual'	, 1.6, 155000, 2    , 'Lorem ipsum', 'image_car/Toyota_Aygo.jpg'        , 'image_car/Toyota_Aygo.jpg'        , 'image_car/Toyota_Aygo.jpg'        ),
-	('Vauxhall Corsa'   , 'Vauxhall'    , 2016, 4, 'Purple'	, 'auto'	, 2.0, 200000, 2    , 'Lorem ipsum', 'image_car/Vauxhall_Corsa_2016.jpg', 'image_car/Vauxhall_Corsa_2016.jpg', 'image_car/Vauxhall_Corsa_2016.jpg'),
-	('Volkswagen Up'    , 'Volkswagen'  , 2016, 4, 'Black'	, 'manual'	, 2.2, 152000, NULL , 'Lorem ipsum', 'image_car/Volkswagen_Up.jpg'      , 'image_car/Volkswagen_Up.jpg'      , 'image_car/Volkswagen_Up.jpg'      ),
-	('Volvo XC90'       , 'Volvo'       , 2020, 7, 'Black'	, 'auto'	, 2.8, 341000, 4    , 'Lorem ipsum', 'image_car/Volvo_XC90.jpg'         , 'image_car/Volvo_XC90.jpg'         , 'image_car/Volvo_XC90.jpg'         )
+	('Citroen C1'       , 'Citroen'     , 2014, 4, 'Blue'	, 'auto'	, 2.0, 162000, 5    , 'Lorem ipsum', 'img/car/Citroen_C1_2014.jpg'    , 'img/car/Citroen_C1_2014.jpg'    , 'img/car/Citroen_C1_2014.jpg'    ),
+	('Citroen C3'       , 'Citroen'     , 2016, 4, 'Red'	, 'auto'	, 2.6, 215000, 7    , 'Lorem ipsum', 'img/car/Citroen_C3.jpg'         , 'img/car/Citroen_C3.jpg'         , 'img/car/Citroen_C3.jpg'         ),
+	('Ford Fiesta'      , 'Ford'        , 2018, 4, 'Red'	, 'manual'	, 2.4, 225000, 3    , 'Lorem ipsum', 'img/car/Ford_Fiesta.jpg'        , 'img/car/Ford_Fiesta.jpg'        , 'img/car/Ford_Fiesta.jpg'        ),
+	('Nissan Micra W'   , 'Nissan'      , 2014, 4, 'White'	, 'auto'	, 1.4, 252000, 3    , 'Lorem ipsum', 'img/car/Nissan_Micra.jpg'       , 'img/car/Nissan_Micra.jpg'       , 'img/car/Nissan_Micra.jpg'       ),
+	('Nissan Micra B'   , 'Nissan'      , 2014, 4, 'Blue'	, 'manual'	, 2.2, 321000, 5    , 'Lorem ipsum', 'img/car/Nissan_Micra_2014.jpg'  , 'img/car/Nissan_Micra_2014.jpg'  , 'img/car/Nissan_Micra_2014.jpg'  ),
+	('Peugeot 108'      , 'Peugeot'     , 2014, 4, 'Purple'	, 'auto'	, 2.2, 129000, 2    , 'Lorem ipsum', 'img/car/Peugeot_108.jpg'        , 'img/car/Peugeot_108.jpg'        , 'img/car/Peugeot_108.jpg'        ),
+	('Renault Twingo'   , 'Renault'     , 2008, 4, 'Blue'	, 'manual'	, 2.0, 125000, 4    , 'Lorem ipsum', 'img/car/Renault_Twingo.jpg'     , 'img/car/Renault_Twingo.jpg'     , 'img/car/Renault_Twingo.jpg'     ),
+	('SEAT Ibiza'       , 'SEAT'        , 2016, 4, 'Red'	, 'auto'	, 2.0, 320000, 5    , 'Lorem ipsum', 'img/car/SEAT_Ibiza.jpg'         , 'img/car/SEAT_Ibiza.jpg'         , 'img/car/SEAT_Ibiza.jpg'         ),
+	('Skoda Citigo'     , 'Skoda'       , 2010, 4, 'Red'	, 'auto'	, 1.8, 224000, 6    , 'Lorem ipsum', 'img/car/Skoda_Citigo.jpg'       , 'img/car/Skoda_Citigo.jpg'       , 'img/car/Skoda_Citigo.jpg'       ),
+	('Smart Forfour'    , 'Smart'       , 2017, 4, 'Grey'	, 'manual'	, 1.6, 126000, 1    , 'Lorem ipsum', 'img/car/Smart_Forfour_2017.jpg' , 'img/car/Smart_Forfour_2017.jpg' , 'img/car/Smart_Forfour_2017.jpg' ),
+	('Suzuki Celerio'   , 'Suzuki'      , 2016, 4, 'White'	, 'auto'	, 2.6, 194000, 4    , 'Lorem ipsum', 'img/car/Suzuki_Celerio.jpg'     , 'img/car/Suzuki_Celerio.jpg'     , 'img/car/Suzuki_Celerio.jpg'     ),
+	('Toyota Aygo'      , 'Toyota'      , 2012, 4, 'Red'	, 'manual'	, 1.6, 155000, 2    , 'Lorem ipsum', 'img/car/Toyota_Aygo.jpg'        , 'img/car/Toyota_Aygo.jpg'        , 'img/car/Toyota_Aygo.jpg'        ),
+	('Vauxhall Corsa'   , 'Vauxhall'    , 2016, 4, 'Purple'	, 'auto'	, 2.0, 200000, 2    , 'Lorem ipsum', 'img/car/Vauxhall_Corsa_2016.jpg', 'img/car/Vauxhall_Corsa_2016.jpg', 'img/car/Vauxhall_Corsa_2016.jpg'),
+	('Volkswagen Up'    , 'Volkswagen'  , 2016, 4, 'Black'	, 'manual'	, 2.2, 152000, NULL , 'Lorem ipsum', 'img/car/Volkswagen_Up.jpg'      , 'img/car/Volkswagen_Up.jpg'      , 'img/car/Volkswagen_Up.jpg'      ),
+	('Volvo XC90'       , 'Volvo'       , 2020, 7, 'Black'	, 'auto'	, 2.8, 341000, 4    , 'Lorem ipsum', 'img/car/Volvo_XC90.jpg'         , 'img/car/Volvo_XC90.jpg'         , 'img/car/Volvo_XC90.jpg'         )
 ;
 
 

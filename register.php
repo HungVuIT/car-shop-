@@ -1,5 +1,5 @@
 <?php 
-	include("php/validate_register.php");
+	include("php_be/validate_register.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
 	<title>Carworld - Register</title>
 
 	<!-- Logo -->
-	<link rel = "icon" href = "img/favicon.png" type = "image/x-icon">
+	<link rel = "icon" href = "img/logo.png" type = "image/x-icon">
 
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">

@@ -1,7 +1,8 @@
 <?php 
     session_start();
 
-    require $_SERVER['DOCUMENT_ROOT'] . "/Hanh/db/db_connect.php";
+    require "db/db_connect.php";
+    $conn = connect();
 
     if(!isset($_SESSION["id"])) {
         header("Location: login.php");
@@ -48,7 +49,7 @@
         if ($_FILES['profileImage'] != "") {   
              // Image
             $profileImageName = time() . '-' . $_FILES["profileImage"]["name"];
-            $target_dir = "img/user";
+            $target_dir = "img/user/";
             $target_file = $target_dir . basename($profileImageName);
 
             $photo_tmp_name = $_FILES["profileImage"]["tmp_name"];
@@ -66,7 +67,7 @@
             else {
                 $check = move_uploaded_file($photo_tmp_name, $target_file);
                 if($check) {
-                    $sql1 = "UPDATE user SET img_path = '$profileImageName' WHERE id='{$_SESSION["id"]}'";
+                    $sql1 = "UPDATE user SET img_path = '$target_file' WHERE id='{$_SESSION["id"]}'";
                     mysqli_query($conn, $sql1);
                 }
             }
